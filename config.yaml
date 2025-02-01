@@ -1,0 +1,16 @@
+Training:
+  image_dir: "dataset"
+  model_name: 32
+  num_classes: 1000
+  learning_rate: 0.0005
+  epochs: 5
+  batch_size: 32
+
+Lora_config:
+  rank: 5
+  alpha: 0.5
+
+Inference:
+  model_path: #Path to saved model
+  image_path:
+  lora_enable: True
