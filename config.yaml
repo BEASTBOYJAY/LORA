@@ -1,16 +1,16 @@
 Training:
-  image_dir: "dataset"
-  model_name: 32
-  num_classes: 1000
-  learning_rate: 0.0005
-  epochs: 5
-  batch_size: 32
+  image_dir: "dataset"      # Directory containing the dataset for training.
+  model_name: "resnet18"    # Model identifier (e.g., resnet18 or resnet50).
+  num_classes: 1000         # Number of output classes for classification.
+  learning_rate: 0.0005     # Learning rate for model training.
+  epochs: 5                 # Number of epochs for training the model.
+  batch_size: 32            # Batch size used during training.
 
-Lora_config:
-  rank: 5
-  alpha: 0.5
+Lora_config:    
+  rank: 5                   # LoRA rank parameter determining the low-rank adaptation.
+  alpha: 0.5                # Scaling factor for LoRA.
 
-Inference:
-  model_path: #Path to saved model
-  image_path:
-  lora_enable: True
+Inference:    
+  model_path:               # Path to the saved model to be used for inference.
+  image_path:               # Path to the input image for inference.
+  lora_enable: True         # Flag to enable or disable LoRA during inference.
