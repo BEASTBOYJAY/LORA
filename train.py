@@ -1,4 +1,4 @@
-from trainer import TrainWithLoRA
+from src.trainer import TrainWithLoRA
 from src.load_model import LoadModel
 import yaml
 
