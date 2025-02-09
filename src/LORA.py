@@ -37,8 +37,6 @@ class LoRA(nn.Module):
             torch.randn(original_layer.out_features, rank) * alpha
         )
 
-        self.use_lora = True
-
     def forward(self, x):
         """
         Forward pass through the LoRA-enhanced layer.
@@ -49,11 +47,8 @@ class LoRA(nn.Module):
         Returns:
             torch.Tensor: The output after applying LoRA and the original layer.
         """
-        if self.use_lora:
-            # Apply the original layer and the low-rank adaptation
-            return self.original_layer(x) + torch.matmul(
-                torch.matmul(x, self.lora_A.T), self.lora_B.T
-            )
-        else:
-            # Apply only the original layer without LoRA
-            return self.original_layer(x)
+
+        # Apply the original layer and the low-rank adaptation
+        return self.original_layer(x) + torch.matmul(
+            torch.matmul(x, self.lora_A.T), self.lora_B.T
+        )
