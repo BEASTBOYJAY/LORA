@@ -2,7 +2,7 @@ import torch
 import torch.nn as nn
 from torch.optim import Adam
 from tqdm import tqdm
-from Data_Processing import get_dataloader
+from .Data_Processing import get_dataloader
 import json
 import os
 

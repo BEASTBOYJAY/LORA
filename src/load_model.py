@@ -1,6 +1,6 @@
 import torch
 from torchvision.models import resnet18, resnet50
-from LORA import LoRA
+from .LORA import LoRA
 import torch.nn as nn
 
 
@@ -48,6 +48,8 @@ class LoadModel:
         """
         # Apply LoRA to fully connected layers in the model
         for name, module in self.model.named_children():
+            for param in module.parameters():
+                param.requires_grad = False
             if isinstance(module, nn.Linear):
                 setattr(
                     self.model, name, LoRA(module, alpha=self.alpha, rank=self.rank)

@@ -1,4 +1,4 @@
-from src.Inference_pipeline import Inference_pipeline
+from src.Inference_pipeline import InferencePipeline
 import yaml
 
 
@@ -26,13 +26,12 @@ class Inference:
             "model_path", "model/fine_tuned_model.pth"
         )
         self.image_path = config["Inference"].get("image_path", "input_image.jpg")
-        self.lora_enable = config["Inference"].get("lora_enable", True)
 
     def run(self):
         """
         Executes the inference pipeline to make predictions on the given image.
         """
-        pipeline = Inference_pipeline(self.model_path, self.lora_enable)
+        pipeline = InferencePipeline(self.model_path)
         pipeline.predict(self.image_path)
 
 

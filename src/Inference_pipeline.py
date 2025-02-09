@@ -1,7 +1,6 @@
 import torch
 from torchvision import transforms
 from PIL import Image
-from LORA import LoRA
 import json
 
 
@@ -19,7 +18,7 @@ class InferencePipeline:
         transforms (torchvision.transforms.Compose): Image transformations for preprocessing.
     """
 
-    def __init__(self, model_path, lora_enable: bool = True, device=None):
+    def __init__(self, model_path, device=None):
         """
         Initializes the inference pipeline by loading the model and setting up transformations.
 
@@ -31,12 +30,6 @@ class InferencePipeline:
         self.device = device or ("cuda" if torch.cuda.is_available() else "cpu")
         self.model = torch.load(model_path, weights_only=False).to(self.device)
         self.class_mapping = json.load(open("./class_mapping.json", "r"))
-
-        if lora_enable:
-            # Enable LoRA layers if present in the model
-            for name, module in self.model.named_children():
-                if isinstance(module, LoRA):
-                    module.set_lora_enabled()
 
         self.model.eval()
         self.transforms = transforms.Compose(

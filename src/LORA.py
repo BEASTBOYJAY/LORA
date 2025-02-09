@@ -57,12 +57,3 @@ class LoRA(nn.Module):
         else:
             # Apply only the original layer without LoRA
             return self.original_layer(x)
-
-    def set_lora_enabled(self, enabled: bool):
-        """
-        Enable or disable LoRA during inference.
-
-        Args:
-            enabled (bool): Flag to enable or disable LoRA.
-        """
-        self.use_lora = enabled
