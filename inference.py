@@ -32,7 +32,8 @@ class Inference:
         Executes the inference pipeline to make predictions on the given image.
         """
         pipeline = InferencePipeline(self.model_path)
-        pipeline.predict(self.image_path)
+        result = pipeline.predict(self.image_path)
+        print(result)
 
 
 if __name__ == "__main__":

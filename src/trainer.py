@@ -96,7 +96,9 @@ class TrainWithLoRA:
 
             # Test the model without computing gradients
             with torch.no_grad():
-                for inputs, labels in self.test_loader:
+                for inputs, labels in tqdm(
+                    self.test_loader, desc=f"Validation {epoch + 1}/{epochs}"
+                ):
                     inputs, labels = inputs.to(self.device), labels.to(self.device)
                     outputs = self.model(inputs)
                     loss = self.criterion(outputs, labels)

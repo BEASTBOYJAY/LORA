@@ -59,8 +59,7 @@ class InferencePipeline:
         # Perform inference without gradient computation
         with torch.no_grad():
             output = self.model(input_data.to(self.device))
-
-        predicted_idx = torch.max(output, 1)[
-            1
-        ].item()  # Get the index of the max probability
+        predicted_idx = str(
+            torch.max(output, 1)[1].item()
+        )  # Get the index of the max probability
         return self.class_mapping[predicted_idx]
